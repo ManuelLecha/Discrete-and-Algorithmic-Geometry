@@ -13,7 +13,6 @@ A, B, C, D = read_point(), read_point(), read_point(), read_point()
 # homogenous coordinates
 to_homogenous_coordinates(x) = [1, x...]
 from_homogenous_coordinates(x) = map(xi -> xi/x[1], x[2:end]) # will fail for points at infinity
-hA, hB, hC, hD = map(to_homogenous_coordinates, [A, B, C, D])
 
 
 # geometry helper functions
