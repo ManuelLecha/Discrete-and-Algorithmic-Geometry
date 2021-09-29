@@ -34,6 +34,10 @@ function divide_projective_quadrangle(hA, hB, hC, hD)
 	hY = intersect_projective_lines(hA, hD, hB, hC)
 	hO = intersect_projective_lines(hA, hC, hB, hD)
 
+	if hX[1] != 0 || hY[1] != 0
+		println("This isn't a parallelogram... but I'm going to let that slide")
+	end
+
 	# compute vertices of subdivision
 	hAB = intersect_projective_lines(hA, hB, hY, hO)
 	hCD = intersect_projective_lines(hC, hD, hY, hO)

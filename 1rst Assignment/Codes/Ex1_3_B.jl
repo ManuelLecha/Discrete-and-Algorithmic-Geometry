@@ -28,26 +28,15 @@ function intersect_projective_lines(hp1, hp2, hp3, hp4)
 	return find_perpendicular(find_perpendicular(hp1, hp2), find_perpendicular(hp3, hp4))
 end
 
-function divide_projective_quadrangle(hA, hB, hC, hD)
-	# compute relevant points
-	hX = intersect_projective_lines(hA, hB, hD, hC)
-	hY = intersect_projective_lines(hA, hD, hB, hC)
-	hO = intersect_projective_lines(hA, hC, hB, hD)
-
-	# compute vertices of subdivision
-	hAB = intersect_projective_lines(hA, hB, hY, hO)
-	hCD = intersect_projective_lines(hC, hD, hY, hO)
-	hBC = intersect_projective_lines(hB, hC, hX, hO)
-	hDA = intersect_projective_lines(hD, hA, hX, hO)
-
-	return hAB, hBC, hCD, hDA, hO
-end
-
 
 hA, hB, hC, hD = map(to_homogenous_coordinates, [A, B, C, D])
 
 hX = intersect_projective_lines(hA, hB, hD, hC)
 hY = intersect_projective_lines(hA, hD, hB, hC)
+
+if hX[1] != 0 || hY[1] != 0
+	println("This isn't a parallelogram, but I'm going to let it slide")
+end
 
 diagonal_coords = Array{Float64}(undef, 9, 3)
 
